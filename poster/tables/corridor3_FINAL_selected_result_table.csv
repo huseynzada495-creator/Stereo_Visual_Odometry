@@ -1,0 +1,4 @@
+dataset,method,evaluation,start_end_drift_m,xy_drift_m,z_abs_drift_m,path_length_m
+corridor3,Raw Stereo VO baseline,start-end drift,46.99044890899892,45.14434504830304,13.04187098651856,304.97657232175794
+corridor3,Stereo VO + one visual loop 560->4760,start-end drift,11.804962237060339,10.324273582322277,5.724203736397137,301.60522619990365
+corridor3,Stereo VO + two visual loops 560->4760 and 780->5060,start-end drift,6.754468563400453,6.695930487662272,0.8873333524442013,301.5295631080048
