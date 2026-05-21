@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Large datasets - do not upload full TUM VI datasets
+dataset-room2_512_16/
+dataset-corridor3_512_16/
+dataset-outdoors5_512_16/
+data/
+
+# Old/debug outputs
+outputs/**/archive_unused_files/
+outputs/**/archive_old*/
+outputs/**/debug*/
+outputs/**/temp*/
+outputs/**/frame_by_frame_debug*/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

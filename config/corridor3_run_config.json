@@ -1,0 +1,51 @@
+{
+  "active_dataset": "corridor3",
+  "random_seed": 42,
+  "run_mono": true,
+  "run_stereo": true,
+  "use_previous_stereo_poses": false,
+  "previous_stereo_poses_file": "C:\\Users\\User\\Desktop\\Stereo_vo\\corridor3_fixed_stereo_results\\corridor3_fixed_stereo_poses.npy",
+  "dataset_path": "C:\\Users\\User\\Desktop\\Stereo_vo\\dataset-corridor3_512_16",
+  "output_dir": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\corridor3_final_submission",
+  "stereo_params": {
+    "nfeatures": 2500,
+    "ratio": 0.72,
+    "top_k": 250,
+    "cross_check": true,
+    "use_fundamental": true,
+    "max_motion": 90.0,
+    "min_disp": 0.8,
+    "max_depth": 8.0,
+    "min_depth": 0.2,
+    "patch_radius": 2,
+    "min_corr": 35,
+    "min_inliers": 30,
+    "t_norm_min": 0.0003,
+    "t_norm_max": 0.2,
+    "rot_angle_max": 12.0,
+    "use_hybrid": false,
+    "use_wls": true,
+    "max_reprojection_rmse": 2.5,
+    "skip_first_n": 0,
+    "invert_pose_update": true
+  },
+  "calibration_summary": {
+    "baseline_raw_m": 0.10108726432764312,
+    "baseline_rectified_m": 0.10108726432764312,
+    "fx_rect": 61.7543399205591,
+    "fy_rect": 61.7543399205591,
+    "cx_rect": 240.23004117552176,
+    "cy_rect": 255.73221762747744,
+    "image_size": [
+      512,
+      512
+    ]
+  },
+  "evaluation_protocol": "Corridor3 start-end drift; GT read-only; no GT correction",
+  "optional_improvement": "Classical visual loop closure using ORB/F-matrix and stereo-PnP",
+  "final_optional_result": "two visual loops 560->4760 and 780->5060",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "opencv": "4.13.0",
+  "numpy": "2.4.4"
+}

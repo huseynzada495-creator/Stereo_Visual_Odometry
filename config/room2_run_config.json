@@ -1,0 +1,32 @@
+{
+  "active_dataset": "room2",
+  "random_seed": 42,
+  "run_mono": true,
+  "run_stereo": true,
+  "dataset_path": "C:\\Users\\User\\Desktop\\Stereo_vo\\dataset-room2_512_16",
+  "output_dir": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\room2_final_submission",
+  "stereo_params": {
+    "nfeatures": 2200,
+    "ratio": 0.75,
+    "top_k": 200,
+    "cross_check": false,
+    "use_fundamental": false,
+    "min_disp": 2.5,
+    "max_depth": 4.0,
+    "min_depth": 0.25,
+    "patch_radius": 2,
+    "min_corr": 40,
+    "min_inliers": 35,
+    "t_norm_min": 0.001,
+    "t_norm_max": 0.15,
+    "rot_angle_max": 20.0,
+    "max_reprojection_rmse": 999.0,
+    "use_hybrid": false,
+    "use_wls": false
+  },
+  "evaluation_protocol": "Room2 full-GT ATE/RPE; GT read-only, no correction",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.4.4",
+  "opencv": "4.10.0"
+}

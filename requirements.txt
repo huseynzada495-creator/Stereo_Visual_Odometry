@@ -1,0 +1,10 @@
+numpy
+scipy
+matplotlib
+pandas
+opencv-contrib-python
+PyYAML
+tqdm
+jupyter
+notebook
+open3d

@@ -1,0 +1,23 @@
+{
+  "active_dataset": "outdoors5",
+  "dataset_path": "C:\\Users\\User\\Desktop\\Stereo_vo\\dataset-outdoors5_512_16",
+  "output_dir": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission",
+  "evaluation_protocol": "Outdoors5 start-end drift; GT used only for evaluation",
+  "raw_outputs": {
+    "mono_tum": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\trajectories\\outdoors5_mono_raw_tum.txt",
+    "stereo_tum": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\trajectories\\outdoors5_stereo_raw_tum.txt",
+    "summary_csv": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\tables\\outdoors5_vo_summary.csv",
+    "mono_stats": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\tables\\outdoors5_mono_frame_stats.csv",
+    "stereo_stats": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\tables\\outdoors5_stereo_frame_stats.csv"
+  },
+  "optional_improvement": {
+    "method": "Stereo VO + safe soft SIFT loop 6000->11847",
+    "trajectory": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\trajectories\\outdoors5_FINAL_stereo_soft_sift_loop_6000_11847_tum.txt",
+    "poses": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\trajectories\\outdoors5_FINAL_stereo_soft_sift_loop_6000_11847_poses.npy",
+    "final_table": "C:\\Users\\User\\Desktop\\Stereo_vo\\outputs\\outdoors5_final_submission\\tables\\outdoors5_FINAL_selected_result_table.csv"
+  },
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "opencv": "4.13.0",
+  "numpy": "2.4.4"
+}
