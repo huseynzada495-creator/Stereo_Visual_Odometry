@@ -51,8 +51,8 @@ Ground truth was used only for evaluation, not for loop detection or correction.
 
 | Dataset | Method | Evaluation | Result |
 |---|---|---|---|
-| Room2 | Monocular VO | ATE/RPE | See output tables |
-| Room2 | Stereo VO | ATE/RPE | See output tables |
+| Room2 | Monocular VO | Full GT ATE/RPE | ATE RMSE = 1.217 m, RPE RMSE = 0.945 m |
+| Room2 | Stereo VO | Full GT ATE/RPE | ATE RMSE = 0.944 m, RPE RMSE = 0.339 m |
 | Corridor3 | Raw Stereo VO | Start-end drift | 46.99 m |
 | Corridor3 | Stereo VO + two visual loops | Start-end drift | 6.75 m |
 | Outdoors5 | Monocular VO | Start-end drift | 2.41 m |
