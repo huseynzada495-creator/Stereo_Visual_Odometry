@@ -1,0 +1,4 @@
+dataset,method,evaluation,alignment,start_end_drift_m,xy_drift_m,z_abs_drift_m,note
+outdoors5,Monocular VO baseline,start-end drift,Sim(3) start segment,2.405969,2.069548,1.227053,Best overall Outdoors5 result
+outdoors5,"Stereo VO + safe soft SIFT loop 6000->11847, gain=0.5",start-end drift,SE(3) start segment,18.309786000674578,12.793353923990502,13.09879226364078,Final optional stereo improvement
+outdoors5,Raw Stereo VO baseline,start-end drift,SE(3) start segment,32.28655817329076,27.409061477223325,17.063563157063086,Required metric stereo baseline
