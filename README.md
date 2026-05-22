@@ -1,54 +1,257 @@
-# Stereo Visual Odometry on TUM VI Sequences
+# Classical Stereo Visual Odometry on TUM VI Sequences
 
-This repository contains a classical **Stereo Visual Odometry (Stereo VO)** pipeline developed and evaluated on selected sequences from the **TUM VI dataset**. The project estimates camera motion from stereo image pairs and reconstructs the camera trajectory using feature matching, stereo geometry, pose estimation, and drift analysis.
+A complete classical computer vision pipeline for Monocular and Stereo Visual Odometry using the TUM VI benchmark, including stereo rectification, disparity-based depth estimation, PnP-RANSAC motion estimation, drift analysis, and loop-based correction experiments.
 
-The work compares monocular and stereo visual odometry behavior, studies trajectory drift, and evaluates correction strategies such as filtering, smoothing, and loop-based trajectory improvement.
+---
+
+## Authors
+
+- Theodore Petrick Reimmer
+- Huseyn Huseynzade
+
+---
+
+## Final Deliverables
+
+### Scientific Report
+```text
+Paper/stereo_vo_report.pdf
+```
+
+### Scientific Poster
+```text
+Poster/stereo_vo_Poster.pdf
+Poster/stereo_vo_Poster.pptx
+```
+
+---
+
+## Main Contributions
+
+- Classical Monocular Visual Odometry baseline
+- Metric Stereo Visual Odometry pipeline
+- Stereo fisheye rectification
+- Disparity-based metric depth estimation
+- PnP + RANSAC pose estimation
+- Trajectory reconstruction
+- Drift analysis and evaluation
+- Loop-based trajectory correction
+- Scientific plots, tables, and poster presentation
+
+---
+
+## Main Results
+
+| Sequence | Result |
+|---|---|
+| Room2 Stereo VO | ATE RMSE improved from **1.217 m → 0.944 m** |
+| Room2 Stereo VO | RPE RMSE improved from **0.945 m → 0.339 m** |
+| Corridor3 | Drift reduced from **46.99 m → 6.75 m** |
+| Outdoors5 | Drift reduced from **32.29 m → 18.31 m** |
 
 ---
 
 ## Project Overview
 
-Visual Odometry estimates the motion of a camera by analyzing consecutive image frames. In this project, stereo image pairs are used to recover more stable depth information than monocular vision alone.
+Visual Odometry estimates camera motion from image sequences and is an important component of robotics, autonomous navigation, SLAM systems, and augmented reality. This project presents a complete transition from a Monocular Visual Odometry baseline to a metric Stereo Visual Odometry pipeline using only classical geometric computer vision methods.
 
-The main objective is to estimate the trajectory of a moving camera from image sequences and compare the estimated path against available reference or expected trajectory behavior.
+The implementation uses:
+- stereo rectification
+- feature detection and matching
+- disparity-based depth estimation
+- Perspective-n-Point (PnP)
+- RANSAC outlier rejection
+- trajectory reconstruction
+- drift analysis
+- loop-based correction experiments
+
+The project was evaluated on selected sequences from the TUM VI benchmark:
+- Room2
+- Corridor3
+- Outdoors5
 
 ---
 
-## Methodology
-
-The pipeline follows a classical computer vision approach:
+## Methodology Pipeline
 
 ```text
 Stereo Image Pair
         ↓
-Camera Calibration / Rectification
+Camera Calibration and Rectification
         ↓
 Feature Detection and Matching
         ↓
 Stereo Depth Estimation
         ↓
-Pose Estimation using PnP + RANSAC
+PnP + RANSAC Pose Estimation
         ↓
 Trajectory Reconstruction
         ↓
 Drift / Error Analysis
         ↓
-Result Visualization
+Loop-based Correction and Smoothing
 ```
-
-The project focuses on interpretable geometric visual odometry rather than deep learning. This makes the pipeline easier to analyze scientifically because each stage can be inspected separately.
 
 ---
 
 ## Dataset Sequences
 
-The experiments were conducted on selected TUM VI sequences:
-
 | Sequence | Environment | Purpose |
 |---|---|---|
-| Room2 | Indoor room sequence | Monocular vs stereo comparison |
-| Corridor3 | Indoor corridor sequence | Drift analysis and loop-based correction |
-| Outdoors5 | Outdoor sequence | Long trajectory behavior and drift evaluation |
+| Room2 | Indoor room | Monocular vs Stereo comparison |
+| Corridor3 | Indoor corridor | Drift analysis and loop correction |
+| Outdoors5 | Outdoor environment | Long trajectory evaluation |
+
+---
+
+## Visual Results
+
+### Room2 Monocular vs Stereo Trajectory
+
+<p align="center">
+  <img src="figures/room2_trajectory_comparison.png" width="850">
+</p>
+
+The Room2 sequence compares monocular and stereo trajectory estimation. Stereo Visual Odometry produced a more stable and consistent trajectory due to direct metric depth estimation from stereo disparity.
+
+---
+
+### Room2 Absolute Trajectory Error
+
+<p align="center">
+  <img src="figures/room2_ate_error_over_frames.png" width="850">
+</p>
+
+This plot shows the evolution of Absolute Trajectory Error (ATE) across the Room2 sequence.
+
+---
+
+### Corridor3 Loop-Corrected Trajectory
+
+<p align="center">
+  <img src="figures/corridor3_raw_single_two_loop_xy.png" width="850">
+</p>
+
+Corridor3 demonstrates accumulated drift in long indoor trajectories. Visual loop correction significantly reduced the final drift.
+
+---
+
+### Corridor3 Drift Components
+
+<p align="center">
+  <img src="figures/corridor3_two_loop_drift_components.png" width="850">
+</p>
+
+This figure visualizes drift component behavior after trajectory correction.
+
+---
+
+### Outdoors5 Final Corrected Trajectory
+
+<p align="center">
+  <img src="figures/outdoors5_FINAL_raw_smooth_sift_loop_xy.png" width="850">
+</p>
+
+Outdoors5 is the most challenging sequence because of its long outdoor trajectory. Smoothing and SIFT-based loop correction improved overall trajectory consistency.
+
+---
+
+### Outdoors5 Drift Components
+
+<p align="center">
+  <img src="figures/outdoors5_drift_components.png" width="850">
+</p>
+
+Outdoor sequences accumulated larger drift over time, especially in long paths.
+
+---
+
+### Stereo Rectification Check
+
+<p align="center">
+  <img src="figures/outdoors5_rectification_check.png" width="850">
+</p>
+
+Stereo rectification aligns corresponding epipolar lines before disparity estimation and stereo matching.
+
+---
+
+## Quantitative Summary
+
+### Room2 Full Ground-Truth Evaluation
+
+| Method | Alignment | ATE RMSE | RPE RMSE |
+|---|---|---|---|
+| Monocular VO | Sim(3) | 1.217 m | 0.945 m |
+| Stereo VO | SE(3) | 0.944 m | 0.339 m |
+
+Stereo Visual Odometry improved both ATE RMSE and RPE RMSE compared with the monocular baseline.
+
+---
+
+### Corridor3 Start-End Drift
+
+| Method | Drift |
+|---|---|
+| Raw Stereo VO | 46.99 m |
+| Stereo VO + Two Visual Loops | 6.75 m |
+
+Visual loop correction significantly reduced accumulated trajectory drift.
+
+---
+
+### Outdoors5 Start-End Drift
+
+| Method | Drift |
+|---|---|
+| Monocular VO baseline | 2.41 m |
+| Raw Stereo VO baseline | 32.29 m |
+| Stereo VO + Step Smoothing | 29.87 m |
+| Stereo VO + Safe Soft SIFT Loop | 18.31 m |
+
+The safe soft SIFT loop correction reduced outdoor drift while avoiding trajectory over-correction.
+
+---
+
+## Runtime Summary
+
+| Dataset | Method | Frames | Runtime |
+|---|---|---|---|
+| Room2 | Monocular VO | 2882 | 10.15 s |
+| Room2 | Stereo VO | 2882 | 11.84 s |
+| Corridor3 | Monocular VO | 5802 | 154.96 s |
+| Corridor3 | Stereo VO | 5802 | 284.05 s |
+| Outdoors5 | Monocular VO | 17747 | 604.98 s |
+| Outdoors5 | Stereo VO | 17747 | 1152.51 s |
+
+Stereo VO required additional computation because of stereo depth estimation and PnP-based motion estimation.
+
+---
+
+## Main Challenges Encountered
+
+### Fisheye Rectification
+Directly using raw fisheye images produced unstable stereo matching and disparity. The fix was to apply official TUM VI fisheye stereo rectification.
+
+### Disparity Noise
+Weak texture and far-depth regions produced unstable disparity estimates. Depth filtering and disparity validation were introduced to improve stability.
+
+### PnP Instability
+Some frame pairs contained too few valid 3D–2D correspondences. Threshold filtering and reprojection-error filtering improved pose estimation robustness.
+
+### False Loop Closures
+Certain loop candidates reduced numerical drift while being visually incorrect. Loop validation therefore required geometric and visual verification.
+
+### Loop Over-Correction
+Strong loop correction sometimes distorted the trajectory. Soft correction gains reduced over-correction while still improving drift.
+
+---
+
+## Scientific Interpretation
+
+Stereo Visual Odometry improves trajectory stability because stereo disparity directly constrains metric depth and scale. However, long sequences still accumulate drift, especially in outdoor environments. Corridor3 and Outdoors5 demonstrate that smoothing and loop-based correction can significantly improve trajectory consistency and reduce accumulated drift.
+
+The experiments also show that monocular trajectories can appear numerically strong after Sim(3) alignment while still lacking true metric scale consistency.
 
 ---
 
@@ -56,177 +259,71 @@ The experiments were conducted on selected TUM VI sequences:
 
 ```text
 Stereo_Visual_Odometry/
-├── config/                  # Run/configuration files
-├── notebooks/               # Final experiment notebooks
-├── outputs/                 # Full generated outputs from experiments
-├── stereo_vo/               # Main visual odometry source code
-├── figures/                 # Clean figures used in the README
-├── poster/                  # Poster preparation folder
-│   ├── assets/              # Images selected for the scientific poster
-│   ├── tables/              # CSV result tables for poster analysis
-│   └── histograms/          # Histogram figures to be added for poster analysis
-├── .gitignore
+├── Paper/
+│   └── stereo_vo_report.pdf
+│
+├── Poster/
+│   ├── stereo_vo_Poster.pdf
+│   └── stereo_vo_Poster.pptx
+│
+├── figures/
+├── outputs/
+├── poster/
+├── stereo_vo/
 ├── README.md
 └── requirements.txt
 ```
 
 ---
 
-## Selected Visual Results
+## Repository Contents
 
-### Room2: Monocular vs Stereo Trajectory
-
-<p align="center">
-  <img src="figures/room2_trajectory_comparison.png" width="750">
-</p>
-
-This figure compares monocular and stereo trajectory estimation on the Room2 sequence. Stereo visual odometry provides additional depth information, which improves motion estimation compared with monocular-only estimation.
-
----
-
-### Room2: ATE Error over Frames
-
-<p align="center">
-  <img src="figures/room2_ate_error_over_frames.png" width="750">
-</p>
-
-The Absolute Trajectory Error (ATE) plot shows how the trajectory error evolves over time. This is useful for identifying where drift begins to increase across the sequence.
-
----
-
-### Corridor3: Raw, Single-Loop, and Two-Loop Trajectory
-
-<p align="center">
-  <img src="figures/corridor3_raw_single_two_loop_xy.png" width="750">
-</p>
-
-The Corridor3 experiment highlights trajectory drift and the effect of loop-based correction. The two-loop strategy reduces the final trajectory drift compared with the raw visual odometry result.
-
----
-
-### Corridor3: Drift Components
-
-<p align="center">
-  <img src="figures/corridor3_two_loop_drift_components.png" width="750">
-</p>
-
-This plot separates the trajectory drift into components, making it easier to analyze how the error changes across different motion directions.
-
----
-
-### Outdoors5: Final Stereo Trajectory Result
-
-<p align="center">
-  <img src="figures/outdoors5_FINAL_raw_smooth_sift_loop_xy.png" width="750">
-</p>
-
-The Outdoors5 sequence is more challenging because it contains a longer outdoor trajectory. The result shows the effect of smoothing and SIFT-based loop correction on the estimated path.
-
----
-
-### Outdoors5: Stereo Rectification Check
-
-<p align="center">
-  <img src="figures/outdoors5_rectification_check.png" width="750">
-</p>
-
-Stereo rectification is an important preprocessing step. It aligns stereo image pairs so that corresponding points lie on the same horizontal scanlines, making stereo matching more reliable.
-
----
-
-## Quantitative Results
-
-| Sequence | Method / Result | Main Observation |
-|---|---|---|
-| Room2 | Monocular vs Stereo VO | Stereo VO improves trajectory stability compared with monocular VO |
-| Corridor3 | Raw vs loop-corrected trajectory | Loop-based correction reduces drift |
-| Outdoors5 | Raw, smoothed, and SIFT loop trajectory | Outdoor motion remains challenging but correction improves the trajectory |
-
-The detailed numerical results are stored in:
-
-```text
-poster/tables/
-outputs/room2_final_submission/tables/
-outputs/corridor3_final_submission/tables/
-outputs/outdoors5_final_submission/tables/
-```
-
-These CSV files are used for scientific analysis, table generation, and poster preparation.
-
----
-
-## Poster Preparation
-
-The repository also includes a dedicated poster preparation folder:
-
-```text
-poster/
-├── assets/
-├── tables/
-└── histograms/
-```
-
-The final scientific poster will use:
-
-- trajectory plots
-- drift/error plots
-- result tables
-- histogram analysis
-- stereo rectification visuals
-- method pipeline summary
-
-Histograms will be added to the poster to show the distribution of frame-level statistics such as feature counts, matching behavior, inlier behavior, and other visual odometry performance indicators.
-
----
-
-## Installation
-
-Create a Python environment and install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## How to Run
-
-The final experiments are available in the `notebooks/` folder. Open the notebooks and run the selected sequence experiment:
-
-```text
-notebooks/
-```
-
-Each notebook produces trajectory files, plots, and CSV result tables inside the corresponding output folder.
-
----
-
-## Main Project Outputs
-
-```text
-outputs/
-├── room2_final_submission/
-├── corridor3_final_submission/
-└── outdoors5_final_submission/
-```
-
-Each output folder contains:
-
-```text
-configs/        # experiment configuration
-plots/          # trajectory and error plots
-tables/         # quantitative CSV results
-trajectories/   # estimated trajectory files
-```
-
----
-
-## Scientific Interpretation
-
-The results show that stereo visual odometry provides more reliable motion estimation than monocular visual odometry because stereo vision gives direct depth information. However, trajectory drift still appears over longer sequences, especially in outdoor environments. Loop-based correction, filtering, and smoothing help reduce this drift and improve trajectory consistency.
+The repository includes:
+- final scientific report
+- final scientific poster
+- reproducible output files
+- trajectory exports
+- evaluation tables
+- drift analysis plots
+- loop correction experiments
+- stereo rectification validation
+- monocular and stereo VO pipelines
 
 ---
 
 ## Conclusion
 
-This project demonstrates a complete classical stereo visual odometry pipeline using real image sequences. The work covers image preprocessing, feature matching, pose estimation, trajectory reconstruction, drift analysis, and scientific result visualization. The final repository is organized for both technical review and scientific poster presentation.
+This project demonstrates a complete classical progression from Monocular Visual Odometry to metric Stereo Visual Odometry using the TUM VI benchmark.
+
+The Stereo VO pipeline improved trajectory consistency compared with the monocular baseline by leveraging calibrated stereo depth. Loop-based correction experiments further reduced accumulated drift in long trajectories, especially on Corridor3 and Outdoors5.
+
+Although the implementation is not a complete SLAM system and does not include global optimization or bundle adjustment, it successfully demonstrates the practical strengths and limitations of classical geometric visual odometry.
+
+---
+
+## Future Work
+
+Possible future improvements include:
+- full loop closure integration
+- bundle adjustment
+- pose graph optimization
+- relocalization
+- SLAM back-end integration
+- comparison with learned VO methods
+- hybrid visual-inertial approaches
+
+---
+
+## Keywords
+
+Stereo Visual Odometry, Monocular Visual Odometry, TUM VI, Stereo Vision, PnP, RANSAC, Disparity Estimation, Trajectory Reconstruction, Drift Analysis, Loop Closure, Computer Vision
+
+---
+
+## Citation
+
+```text
+H. Huseynzade and T. P. Reimmer,
+"Stereo Visual Odometry Project",
+GitHub repository, 2026.
+```
