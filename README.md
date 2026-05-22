@@ -22,6 +22,7 @@ Paper/stereo_vo_report.pdf
 ```text
 Poster/stereo_vo_Poster.pdf
 Poster/stereo_vo_Poster.pptx
+Poster/Stereo_vo_presentation.pptx
 ```
 
 ---
@@ -265,6 +266,7 @@ Stereo_Visual_Odometry/
 ├── Poster/
 │   ├── stereo_vo_Poster.pdf
 │   └── stereo_vo_Poster.pptx
+│   └── stereo_vo_Presentation.pptx
 │
 ├── figures/
 ├── outputs/
